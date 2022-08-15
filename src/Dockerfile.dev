@@ -33,6 +33,7 @@ ADD --chown=$USERNAME:$GROUP \
 ADD --chown=$USERNAME:$GROUP \
   https://gist.githubusercontent.com/utkusarioglu/d5c216c744460c45bf6260d0de4131b4/raw/d227102e3630a93f8eafcb4d2a5a053d2ae04415/.inputrc \
   /home/$USERNAME/.inputrc
+
 RUN chmod +x \
   /scripts/create-env-example.sh \
   /home/$USERNAME/.bashrc \
