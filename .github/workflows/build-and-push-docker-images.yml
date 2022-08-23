@@ -24,7 +24,7 @@ jobs:
             containerName: plantuml-devcontainer
             containerTag: 1.0.0
             username: plantuml
-            additionalFilesToWatch: ""
+            additionalFilesToWatch: src/**
 
     steps:
       - name: Checkout code
@@ -37,7 +37,6 @@ jobs:
         uses: tj-actions/changed-files@v25
         with:
           files: |
-            ${{ matrix.images.dockerfile }}
             ${{ matrix.images.additionalFilesToWatch }}
 
       - name: Declare run state
