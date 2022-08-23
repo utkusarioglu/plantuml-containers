@@ -85,7 +85,6 @@ jobs:
         run: echo ${{ steps.docker-build.outputs.digest }}
 
       - name: Move cache
-        # if: steps.changed-files.outputs.any_modified == 'true'
         run: |
           rm -rf ${{ env.CACHE_FROM_SRC }}
           if [ -d ${{ env.CACHE_FROM_SRC }} ];
