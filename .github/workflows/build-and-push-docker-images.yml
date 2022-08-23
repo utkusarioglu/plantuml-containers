@@ -21,6 +21,8 @@ jobs:
       matrix:
         images:
           - dockerfile: src/Dockerfile.dev
+            dockerReadmePath: src/DOCKER_README.md
+            dockerShortDescription: Devcontainer for PlantUML design workloads
             containerName: plantuml-devcontainer
             containerTag: 1.0.0
             username: plantuml
@@ -83,6 +85,16 @@ jobs:
       - name: Image digest
         if: steps.run_state.outputs.run_docker_build == 'true'
         run: echo ${{ steps.docker-build.outputs.digest }}
+
+      - name: Set Docker Hub description
+        if: steps.run_state.outputs.run_docker_build == 'true'
+        uses: peter-evans/dockerhub-description@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.images.containerName }}
+          short-description: ${{ matrix.images.dockerShortDescription }}
+          readme-filepath: ${{ matrix.images.dockerReadmePath }}
 
       - name: Move cache
         run: |
