@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - experiment/**/**/**
     paths:
       - src/**
       - .github/workflows/build-and-push.yml
@@ -24,7 +25,7 @@ jobs:
             dockerReadmePath: src/DOCKER_README.md
             dockerShortDescription: Devcontainer for PlantUML design workloads
             containerName: plantuml-devcontainer
-            containerTag: 1.0.1
+            containerTag: 1.0.3
             username: plantuml
             additionalFilesToWatch: src/**
 

@@ -14,8 +14,18 @@ ENV SHELL /bin/bash
 RUN apt update && apt upgrade -y && apt install \
   git \
   curl \
-  vim \
+  wget \
   -y 
+
+# Neovim requires manual retrieval of the latest version
+# as the apt package is quite old
+RUN wget https://github.com/neovim/neovim/releases/download/v0.8.0/nvim-linux64.deb \
+  -O /neovim.deb
+RUN apt install -y /neovim.deb 
+RUN rm /neovim.deb
+ENV EDITOR=nvim
+
+RUN apt remove -y wget
 
 RUN echo "root:$ROOT_PASS" | chpasswd
 RUN useradd -m $USERNAME
