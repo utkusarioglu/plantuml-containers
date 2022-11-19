@@ -1,0 +1,13 @@
+{
+  "image": "${localEnv:IMAGE_NAME}:${localEnv:IMAGE_TAG}",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "jebbs.plantuml"
+      ]
+    }
+  },
+  "features": {
+    "github-cli": "latest"
+  }
+}
